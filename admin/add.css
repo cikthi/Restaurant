@@ -1,0 +1,32 @@
+
+body{
+    margin: 150px;
+        background-image: linear-gradient(rgb(245, 225, 228) , black);
+    }
+    
+    h2{
+        text-align: center;
+        text-decoration: wavy;
+    }
+    .mb-3 row{
+        text-align: center;
+    }
+    
+    form{
+        margin: 100px;
+    }
+    .floatingInput{
+        width: 100px;
+    }
+    
+    button.btn btn-success{
+       align-items: center;
+    }
+    
+    img{
+        width: 100px;
+        height: 100px;
+        border-radius: 20px;
+        margin-top: 50px;
+        margin-right: 30px;
+    }

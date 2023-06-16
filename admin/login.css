@@ -1,0 +1,29 @@
+
+body{
+    background-image: url(gambar/wallpaperLog.jpg);
+    background-size: cover;
+  
+}
+button{
+    align-items: center;
+}
+
+h1
+{
+font-size: large;
+text-align: center;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+color: aliceblue;
+}
+form{
+    position: relative;
+    left: 200px;
+    color: antiquewhite;
+}
+
+
+/* a {
+    color: #f6faff;
+    text-decoration: none;
+    font-family: monospace;
+} */
