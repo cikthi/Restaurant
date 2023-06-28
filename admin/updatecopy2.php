@@ -1,6 +1,6 @@
 <?php
 include('config.php'); 
-if(isset($_POST['update'])) {    
+if(isset($_POST['namaMenu'])) {    
     $namaMenu = $_POST['namaMenu'];
     $jenisMenu= $_POST['jenisMenu'];
     $hargaMenu =$_POST ['hargaMenu'];
@@ -16,7 +16,7 @@ if(isset($_POST['update'])) {
         echo "<script>alert(' Tidak berjaya kemaskini')</script>";
     echo "<script>window.location='menu.php'</script>";
  } 
-//$namaMenu = $_GET['namaMenu'];
+// $namaMenu = $_GET['namaMenu'];
 $sql = "SELECT * FROM menu";
 $hasil = mysqli_query($samb, $sql);
 while ($menu = mysqli_fetch_array($hasil)) {
@@ -26,7 +26,8 @@ while ($menu = mysqli_fetch_array($hasil)) {
     $gambar = $menu['gambar'];
 }
 ?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -66,7 +67,7 @@ while ($menu = mysqli_fetch_array($hasil)) {
                         <div class="col-md-10">
                         <div class="input-group">
                             <input type="file" class="form-control" id="inputGroupFile04"
-          upFileAddon04" aria-label="Upload" name="gambar"
+                                aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="gambar"
                                 value="<?php echo $gambar;?>">
 
                         </div>
@@ -82,7 +83,7 @@ while ($menu = mysqli_fetch_array($hasil)) {
                          <form class="row g-3 needs-validation" novalidate>
                         <div class="col-md-10">
                         <input type="text" class="form-control" id="validationCustom01" type="text" value="<?php echo $jenisMenu;?>" name="jenisMenu"
-                            id="jenisMenu" size="60"  required>
+                            id="jenisMenu"size="60"  required>
 </div>
                         </div>
                     </td>
