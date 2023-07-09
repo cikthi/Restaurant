@@ -1,38 +1,40 @@
-<?php
-include('config.php'); 
-if(isset($_POST['namaMenu'])) {    
-    $namaMenu = $_POST['namaMenu'];
-    $jenisMenu= $_POST['jenisMenu'];
-    $hargaMenu =$_POST ['hargaMenu'];
-    $gambar = $_POST['gambar'];
+<?php 
+include "config.php";
 
-   
-    $samb = mysqli_connect($host, $user, $password, $database);
-    $sql = "UPDATE menu SET namaMenu='$namaMenu', jenisMenu='$jenisMenu',hargaMenu='$hargaMenu' , gambar ='$gambar' WHERE namaMenu = '$namaMenu'";
-    $hasil = mysqli_query($samb, $sql); 
-    if ($hasil)
-        echo "<script>alert('Berjaya kemaskini')</script>";
-    else 
-        echo "<script>alert(' Tidak berjaya kemaskini')</script>";
-    echo "<script>window.location='menu.php'</script>";
- } 
-// $namaMenu = $_GET['namaMenu'];
-$sql = "SELECT * FROM menu";
-$hasil = mysqli_query($samb, $sql);
-while ($menu = mysqli_fetch_array($hasil)) {
-    $namaMenu = $menu['namaMenu'];
-    $jenisMenu = $menu['jenisMenu'];
-    $hargaMenu = $menu['hargaMenu'];
-    $gambar = $menu['gambar'];
-}
-?>
+    if (isset($_POST['update'])) {
+        $namaMenu = $_POST['namaMenu'];
+        $jenisMenu= $_POST['jenisMenu'];
+        $hargaMenu =$_POST ['hargaMenu'];
+        $gambar = $_POST['gambar'];
+    $sql = "UPDATE menu SET jenisMenu='$jenisMenu',hargaMenu='$hargaMenu',gambar='$gambar' WHERE namaMenu='$namaMenu'"; 
+        $result = $samb->query($sql); 
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        if ($result == TRUE) {
+            echo "<script>alert('Record updated successfully.');
+            window.location='menu.php'</script>";
+        }else{
+            echo "Error:" . $sql . "<br>" . $samb->error;
+        }
+    } 
+
+if (isset($_GET['namaMenu'])) {
+    $namaMenu = $_GET['namaMenu']; 
+    $sql = "SELECT * FROM menu WHERE namaMenu='$namaMenu'";
+    $result = $samb->query($sql); 
+
+    if ($result->num_rows > 0) {        
+        while ($row = $result->fetch_assoc()) {
+            $namaMenu = $row['namaMenu'];
+            $jenisMenu = $row['jenisMenu'];
+            $hargaMenu  = $row['hargaMenu'];
+            $gambar = $row['gambar'];
+        } 
+    ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <head>
         <style>
             .container {
@@ -51,6 +53,7 @@ while ($menu = mysqli_fetch_array($hasil)) {
 <body>
     <center>
         <div class="container">
+            <h2>Kemaskini Menu</h2>
    <table class="table table-success table-striped">
   <thead>
    <th>Gambar</th>
@@ -60,14 +63,15 @@ while ($menu = mysqli_fetch_array($hasil)) {
    <th>Operasi</th>
   </thead>
         </div>
- 
-    <form method="POST" >
+
+
+        <form method="POST" >
     <tr>
                         <td>
                         <div class="col-md-10">
                         <div class="input-group">
                             <input type="file" class="form-control" id="inputGroupFile04"
-                                aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="gambar"
+          upFileAddon04" aria-label="Upload" name="gambar"
                                 value="<?php echo $gambar;?>">
 
                         </div>
@@ -83,7 +87,7 @@ while ($menu = mysqli_fetch_array($hasil)) {
                          <form class="row g-3 needs-validation" novalidate>
                         <div class="col-md-10">
                         <input type="text" class="form-control" id="validationCustom01" type="text" value="<?php echo $jenisMenu;?>" name="jenisMenu"
-                            id="jenisMenu"size="60"  required>
+                            id="jenisMenu" size="60"  required>
 </div>
                         </div>
                     </td>
@@ -105,4 +109,9 @@ while ($menu = mysqli_fetch_array($hasil)) {
 </table>
     </center>
 </body>
+
 </html>
+<?php
+    } 
+}
+?>

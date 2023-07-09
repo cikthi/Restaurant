@@ -153,7 +153,7 @@ include "config.php";
 		<td><button type="button" class="btn";><a href="delete.php
 			?namaMenu=<?php
 			echo $user['namaMenu'];?>" style="color: #000000;text-decoration:none;">Delete</a></button>
-					<button type="button" class="btn"><a href="update.php" style="color: #000000;text-decoration:none;">Update</a> </button>
+					<button type="button" class="btn"><a href="updatecopy2.php" style="color: #000000;text-decoration:none;">Update</a> </button>
 					
 				</td>
 			</tr>
